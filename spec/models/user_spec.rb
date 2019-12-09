@@ -45,6 +45,35 @@ RSpec.describe User, type: :model do
     bob.delete
   end
 
+  it 'is invalid with an incorrectly formatted email address' do
+    bob = User.create(first_name: 'Bob',
+                      last_name:  'Ross',
+                      email:      'happytree47gmail.com',
+                      password:   'password')
+
+    expect(bob).to be_invalid
+
+    bob.delete
+  end
+
+  it 'is invalid with an email address that has already been taken' do
+    bob =   User.create(first_name: 'Bob',
+                        last_name:  'Ross',
+                        email:      'happytree47@gmail.com',
+                        password:   'password')
+
+    pablo = User.create(first_name: 'Pablo',
+                        last_name:  'Picasso',
+                        email:      'happytree47@gmail.com',
+                        password:   'password')
+
+    expect(bob).to be_valid
+    expect(pablo).to be_invalid
+
+    bob.delete
+    pablo.delete
+  end
+
   it 'is invalid without a password' do
     bob = User.create(first_name: 'Bob',
                       last_name:  'Ross',
