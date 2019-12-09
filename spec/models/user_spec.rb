@@ -56,5 +56,16 @@ RSpec.describe User, type: :model do
     bob.delete
   end
 
+  it 'is invalid with a password shorter than 8 characters' do
+    bob = User.create(first_name: 'Bob',
+                      last_name:  'Ross',
+                      email:      'happytree47@gmail.com',
+                      password:   'word')
+
+    expect(bob).to be_invalid
+
+    bob.delete
+  end
+
 
 end
