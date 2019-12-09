@@ -23,4 +23,38 @@ RSpec.describe User, type: :model do
     bob.delete
   end
 
+  it 'is invalid without a last name' do
+    bob = User.create(first_name: 'Bob',
+                      last_name:  '',
+                      email:      'happytree47@gmail.com',
+                      password:   'password')
+
+    expect(bob).to be_invalid
+
+    bob.delete
+  end
+
+  it 'is invalid without an email address' do
+    bob = User.create(first_name: 'Bob',
+                      last_name:  'Ross',
+                      email:      '',
+                      password:   'password')
+
+    expect(bob).to be_invalid
+
+    bob.delete
+  end
+
+  it 'is invalid without a password' do
+    bob = User.create(first_name: 'Bob',
+                      last_name:  'Ross',
+                      email:      'happytree47@gmail.com',
+                      password:   '')
+
+    expect(bob).to be_invalid
+
+    bob.delete
+  end
+
+
 end
