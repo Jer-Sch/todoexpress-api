@@ -95,6 +95,4 @@ RSpec.describe User, type: :model do
 
     bob.delete
   end
-
-
 end
