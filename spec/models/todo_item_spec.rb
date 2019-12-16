@@ -16,6 +16,14 @@ RSpec.describe TodoItem, type: :model do
     expect(todo.user_id).to eq(graham.id)
   end
 
+  it 'can be completed' do
+    expect(todo.completed).to eq(false)
+
+    todo.completed = true
+
+    expect(todo.completed).to eq(true)
+  end
+
   graham.todo_items.destroy
   graham.destroy
 end
